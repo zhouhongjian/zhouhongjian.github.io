@@ -23,7 +23,7 @@ description: >
   This is my blog site.Not only can it include my pics of travel and life,
   but also it contain my post. 
 baseurl: ""
-url: "zhouhongjian.github.io"
+#url: "zhouhongjian.github.io"
 github_username: zhouhongjian
 
 # Build settings
