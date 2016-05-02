@@ -17,8 +17,8 @@
       <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="{{ "js/jquery.min.js" | prepend: site.bs_path | prepend: site.bs_path | prepend: site.baseurl | prepend: site.url }}"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="{{ "js/jquery.min.js" | prepend: site.bs_path | prepend: site.baseurl | prepend: site.url }}"></script>
     <script src="{{ "js/bootstrap.min.js" | prepend: site.bs_path | prepend: site.baseurl | prepend: site.url }}"></script>
+	<!--提供footer固定样式-->
+	<link rel="stylesheet" href="{{ "/css/custom/fixedfooter.css" | prepend: site.baseurl }}">
 </head>

@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
-
   {% include custom/head_bs.html %}
 
   <body>
 
     {% include custom/header_bs.html %}
 
-    <div class="page-content">
-      <div class="wrapper">
+
+    <div class="page-content" id="wrap">
+      <div class="wrapper" id="main">
         {{ content }}
       </div>
     </div>
 
-    {% include footer.html %}
+    {% include custom/footer_bs.html %}
 
   </body>
 
