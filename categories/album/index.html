@@ -1,0 +1,46 @@
+---
+layout: default_bs
+categoryName: album
+---
+<link rel="stylesheet" href="index.css" charset="utf-8">
+
+<div class="home">
+    <h1 class="page-heading" style="font-family:'fangyan'">文章列表</h1>
+    <ul class="post-list">
+        {% assign index = 0 %}
+        {% for post in site.posts %}
+          {% if post.category == page.categoryName %}
+          {% assign index = index | plus: 1 %}
+            {% assign val = index | modulo: 3 %}
+            <li>
+                <article class="excerpt" style="background-image: url(/assets/img/album-frame-suse{% case val %}{% when 0 %}1{%when 1 %}2{% when 2 %}3{% when 3 %}4{% endcase %}.png);">
+                  <header>
+                    <h2>
+                    <small>
+                      <img src="/assets/img/post-tag.svg"/>
+                      <span>
+                        &nbsp;{{ post.tag }}&nbsp;
+                      </span>
+                    </small>
+                    <a class="post-link text-center" href="{{ post.url | prepend: site.baseurl }}">
+                      {{ post.title }}
+                    </a>
+                  </h2>
+                </header>
+                <section>
+                  <a href="{{ post.url | prepend: site.baseurl }}">{{ post.excerpt }}  </a>
+                </section>
+                <footer>
+                <p class="item_p" >
+                    <span class="glyphicon"><img src="/assets/img/lantern.svg"/>{{ post.category }}&nbsp;</span>
+                    <span class="post-meta glyphicon"><img src="/assets/img/bamboo.svg"/>{{ post.date | date: "%Y年-%m月-%d日" }}&nbsp;</span>
+                    <span class="glyphicon"><img src="/assets/img/panda.svg"/>{{ post.author }}&nbsp;</span>
+                </p>
+                </footer>
+              </article>
+            </li>
+          {% endif%}
+        {% endfor %}
+    </ul>
+
+</div>

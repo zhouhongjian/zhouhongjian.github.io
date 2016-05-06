@@ -1,0 +1,39 @@
+.font-fangyan{
+  font-family:'fangyan'
+}
+
+.home{
+  padding:20px  50px;
+  background-color:#F5F5F5;
+}
+
+.home header{
+  height:250px;
+}
+
+.home header div{
+  width:200px;height:250px;
+}
+
+.home section{
+  margin:20px 0px;
+}
+
+.home section .about-item{
+  font-size:20px;font-weight:bold;
+}
+
+.home section p{
+  text-align:center
+}
+
+.home section p .about-bold{
+  font-size:16px;
+  font-weight:bold;
+}
+
+.item {padding-top:10px;}
+
+.progress{
+  margin-left:150px;background-color:#F8F8F8;height:30px;
+}

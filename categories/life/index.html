@@ -1,0 +1,45 @@
+---
+layout: default_bs
+categoryName: life
+---
+<link rel="stylesheet" href="/css/custom/categoryindex.css" charset="utf-8">
+
+
+<div class="home">
+    <h1 class="page-heading font-fangyan">文章列表</h1>
+    <ul class="post-list">
+        {% for post in site.posts %}
+          {% if post.category == page.categoryName %}
+            <li>
+                <article class="excerpt">
+                  <header>
+                    <h2>
+                    <small>
+                      <img src="/assets/img/post-tag.svg"/>
+                      <span>
+                        &nbsp;{{ post.tag }}&nbsp;
+                      </span>
+                    </small>
+                    <a class="post-link text-center" href="{{ post.url | prepend: site.baseurl }}">
+                      {{ post.title }}
+                    </a>
+                  </h2>
+                </header>
+                  <section style="margin-bottom:5px;">
+                    <span class="">{{ post.excerpt }}</span>
+                  </section>
+                    <p class="button_p">
+                        <a class="btn btn-default btn-sm font-fangyan" href="{{ post.url | prepend: site.baseurl }}" role="button">进入阅读</a>
+                    </p>
+                    <p class="item_p">
+                        <span class="glyphicon"><img src="/assets/img/lantern.svg"/>{{ post.categories }}&nbsp;</span>
+                        <span class="post-meta glyphicon"><img src="/assets/img/bamboo.svg"/>{{ post.date | date: "%Y年-%m月-%d日" }}&nbsp;</span>
+                        <span class="glyphicon"><img src="/assets/img/panda.svg"/>{{ post.author }}&nbsp;</span>
+                    </p>
+                </article>
+            </li>
+          {% endif%}
+        {% endfor %}
+    </ul>
+
+</div>

@@ -1,0 +1,45 @@
+---
+layout: default_bs
+---
+<style media="screen">
+    body {
+        background-color: #EEE
+        /*background-image: url(assets/img/backgrooud-image2.jpg);*/
+    }
+</style>
+<article class="post" style="background-color:#F5F5F5; padding:20px 50px;" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
+    <p class="post-meta">
+      <time class="glyphicon" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished"><img src="/assets/img/bamboo.svg" style="height: 22px;"/>{{ page.date | date: "%Y年-%m月-%d日" }}&nbsp;</time>
+      {% if page.author %}
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span class="glyphicon" itemprop="name"><img src="/assets/img/panda.svg" style="height: 22px;"/>
+          {{ page.author }}&nbsp;</span>
+      </span>{% endif %}
+    </p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+<div style="font-family:'fangyan'">
+  <!-- 多说评论框 start -->
+<div class="ds-thread" data-thread-key="{{ page.id }}" data-title="{{ page.title }}" data-url="{{ page.url | prepend: site.baseurl}}"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"zhouhongjian"};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0]
+   || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+<!-- 多说公共JS代码 end -->
+</div>
+</article>

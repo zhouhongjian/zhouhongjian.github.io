@@ -1,0 +1,52 @@
+<style media="screen">
+    body {
+        /*background-image: url(/assets/img/gufeng1.jpg);*/
+    }
+
+    .excerpt {
+        /*background-color: #fff;*/
+        background-color:#F5F5F5;
+        padding: 10px 15px 30px 20px;
+        margin-bottom: 10px;
+        position: relative;
+        clear: both;
+    }
+
+    .button_p a{
+      color:#999;
+      font-size:15px;
+    }
+
+    .item_p {
+        float: right;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+
+    .item_p span {
+        font-size: 13px;
+        color: #999;
+    }
+
+    .item_p span img {
+      height: 22px;
+    }
+    .font-fangyan{
+      font-family:'fangyan'
+    }
+
+    .excerpt header img{
+      height: 30px;
+      margin-top: -15px;
+    }
+
+    .excerpt header span{
+      font-size: 13px;
+      color: #999;
+    }
+
+    .excerpt section{
+      margin-bottom:5px;
+      color: #777;
+    }

@@ -1,0 +1,52 @@
+.excerpt {
+    /*background-color: #fff;*/
+    padding: 10px 15px 30px 20px;
+    margin-bottom: 10px;
+    position: relative;
+    clear: both;
+    width: 580px;
+    height: 470px;
+}
+.excerpt {
+    background-image: url(/assets/img/album-frame-suse1.jpg);
+    background-repeat:no-repeat;
+}
+
+.excerpt section{
+  width: 400px;
+  height: 300px;
+  margin-left: 80px;
+}
+
+.item_p {
+    float: right;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.item_p span {
+    font-size: 13px;
+    color: #999;
+}
+
+.item_p span img {
+  height: 22px;
+}
+.font-fangyan{
+  font-family:'fangyan'
+}
+
+.excerpt header img{
+  height: 30px;
+  margin-top: -15px;
+}
+
+.excerpt header span{
+  font-size: 13px;
+  color: #999;
+}
+
+.excerpt section{
+  margin-bottom:5px;
+}

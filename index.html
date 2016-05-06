@@ -1,0 +1,79 @@
+---
+layout: default_bs
+---
+
+<link rel="stylesheet" href="/css/custom/categoryindex.css" charset="utf-8">
+<style media="screen">
+    .tongji-right{
+      font-family:'fangyan';
+      float:right;
+      position:absolute;
+      right:30px;top:100px;
+    }
+</style>
+
+<div class="tongji-right">
+  <h4>分类统计</h4>
+    <hr>
+    <!-- 这是按category统计的 -->
+      {% for category in site.categories %}
+        {% assign var = category | first %}
+         {% if 'update' ==  var %}
+         {% elsif 'jekyll' == var%}
+         {% else %}
+          <li class="category_list_item"><a href="/categories/{{ category | first }}">{{ category | first }}</a> ({{ category | last | size }})
+          </li>
+         {% endif %}
+      {% endfor %}
+</div>
+<div class="home">
+    <h1 class="page-heading font-fangyan">文章列表</h1>
+
+    <ul class="post-list">
+        {% for post in paginator.posts %}
+        <li>
+            <article class="excerpt">
+                <header>
+                  <h2>
+                  <small>
+                    <img src="/assets/img/post-tag.svg"/>
+                    <span>
+                      {{ post.tags }}
+                    </span>
+                  </small>
+                  <a class="post-link text-center" href="{{ post.url | prepend: site.baseurl }}">
+                    {{ post.title }}
+                  </a>
+                </h2>
+              </header>
+              <section>
+                <span class="" style="">{{ post.excerpt }}</span>
+              </section>
+                <p class="button_p font-fangyan">
+                  <a class="btn btn-default btn-sm" href="{{ post.url | prepend: site.baseurl }}" role="button">
+                    进入阅读</a>
+                </p>
+                <p class="item_p">
+                    <span class="glyphicon"><img src="/assets/img/lantern.svg"/>{{ post.categories }}&nbsp;</span>
+                    <span class="post-meta glyphicon"><img src="/assets/img/bamboo.svg"/>{{ post.date | date: "%Y年-%m月-%d日" }}&nbsp;</span>
+                    <span class="glyphicon"><img src="/assets/img/panda.svg"/>{{ post.author }}&nbsp;</span>
+                </p>
+            </article>
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% if paginator.total_pages > 1 %}
+    <div class="pagination">
+        {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a> {% else %}
+        <span>&laquo; Prev</span> {% endif %} {% for page in (1..paginator.total_pages) %} {% if page == paginator.page %}
+        <em>{{ page }}</em> {% elsif page == 1 %}
+        <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a> {% else %}
+        <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a> {% endif %} {% endfor %} {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a> {% else %}
+        <span>Next &raquo;</span> {% endif %}
+    </div>
+    {% endif %}
+
+</div>
