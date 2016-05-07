@@ -1,8 +1,8 @@
 ---
 layout: post_bs
 title:  "滕王阁序"
-date:   2016-04-28 22:53:08 +0800
-tags: 测试| 看看
+date:   2016-05-01
+tags: 测试| 古文
 category: programming
 author: 王勃
 ---

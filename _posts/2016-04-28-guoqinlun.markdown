@@ -2,7 +2,7 @@
 layout: post_bs
 title:  过秦论
 date:   2016-04-28 22:53:08 +0800
-tags: 测试| 看看
+tags: 测试| 古文
 category: life
 author: 贾谊
 ---

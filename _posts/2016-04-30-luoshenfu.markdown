@@ -1,8 +1,8 @@
 ---
 layout: post_bs
 title:  "洛神赋"
-date:   2016-04-28 22:53:08 +0800
-tags: 古文
+date:   2016-04-30
+tags: 测试|古文
 category: life
 author: 曹植
 ---

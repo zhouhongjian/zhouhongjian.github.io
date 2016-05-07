@@ -44,9 +44,8 @@ layout: default_bs
                   </a>
                 </h2>
               </header>
-              <section style="overflow: hidden;">
-                <span class="" style="
-                  font-family: KaiTi,STKaiti,Microsoft YaHei;">{{ post.excerpt }}</span>
+              <section {% if post.category == 'album' %}style="height:250px;overflow: hidden;text-align:center;"{% endif %}>
+                <span>{{ post.excerpt }}</span>
               </section>
                 <p class="button_p font-fangyan">
                   <a class="btn btn-default btn-sm" href="{{ post.url | prepend: site.baseurl }}" role="button">
