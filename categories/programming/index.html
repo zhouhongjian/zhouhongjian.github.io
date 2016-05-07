@@ -16,7 +16,7 @@ categoryName: programming
                     <small>
                       <img src="/assets/img/post-tag.svg"/>
                       <span>
-                        &nbsp;{{ post.tag }}&nbsp;
+                        &nbsp;{{ post.tags }}&nbsp;
                       </span>
                     </small>
                     <a class="post-link text-center" href="{{ post.url | prepend: site.baseurl }}">
@@ -31,9 +31,9 @@ categoryName: programming
                     <a class="btn btn-default btn-sm"  href="{{ post.url | prepend: site.baseurl }}" role="button">进入阅读</a>
                   </p>
                     <p class="item_p">
-                        <span class="glyphicon"><img src="/assets/img/lantern.svg"/>{{ post.categories }}&nbsp;</span>
-                        <span class="post-meta glyphicon"><img src="/assets/img/bamboo.svg"/>{{ post.date | date: "%Y年-%m月-%d日" }}&nbsp;</span>
-                        <span class="glyphicon"><img src="/assets/img/panda.svg"/>{{ post.author }}&nbsp;</span>
+                        <span><img src="/assets/img/lantern.svg"/>{{ post.categories }}&nbsp;</span>
+                        <span class="post-meta"><img src="/assets/img/bamboo.svg"/>{{ post.date | date: "%Y年-%m月-%d日" }}&nbsp;</span>
+                        <span><img src="/assets/img/panda.svg"/>{{ post.author }}&nbsp;</span>
                     </p>
                 </article>
             </li>

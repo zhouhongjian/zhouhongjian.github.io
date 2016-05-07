@@ -20,9 +20,6 @@
 	<script src="{{ "js/jquery.min.js" | prepend: site.bs_path | prepend: site.baseurl | prepend: site.url }}"></script>
     <script src="{{ "js/bootstrap.min.js" | prepend: site.bs_path | prepend: site.baseurl | prepend: site.url }}"></script>
 
-	<!--提供footer固定样式-->
-	<link rel="stylesheet" href="{{ "/css/custom/fixedfooter.css" | prepend: site.baseurl }}">
-
   <!-- SlidesJS Required (if responsive): Sets the page width to the device width. -->
 	<meta name="viewport" content="width=device-width">
 	<!-- End SlidesJS Required -->
@@ -33,4 +30,10 @@
 
 	<!-- SlidesJS Required: These styles are required if you'd like a responsive slideshow -->
 	<link rel="stylesheet" href="/assets/plugins/album.slides/css/required.css" charset="utf-8">
+
+
+  <!--提供footer固定样式-->
+	<link rel="stylesheet" href="{{ "/css/custom/fixedfooter.css" | prepend: site.baseurl }}">
+  <!-- 提供自定义通用样式 -->
+  <link rel="stylesheet" href="{{ "/css/custom/common.css" | prepend: site.baseurl }}">
 </head>

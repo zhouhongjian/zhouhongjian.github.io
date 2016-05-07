@@ -1,9 +1,8 @@
 ---
-layout: page
+layout: post_bs
 title: first test
 author: 周红建
 category: 测试
-permalink: /:year/:month/:day/:title
 ---
 zhouhongjian's test blog site1
 

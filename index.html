@@ -1,11 +1,9 @@
 ---
 layout: default_bs
 ---
-
 <link rel="stylesheet" href="/css/custom/categoryindex.css" charset="utf-8">
 <style media="screen">
     .tongji-right{
-      font-family:'fangyan';
       float:right;
       position:absolute;
       right:30px;top:100px;
@@ -21,7 +19,7 @@ layout: default_bs
          {% if 'update' ==  var %}
          {% elsif 'jekyll' == var%}
          {% else %}
-          <li class="category_list_item"><a href="/categories/{{ category | first }}">{{ category | first }}</a> ({{ category | last | size }})
+          <li class="category_list_item"><a href="/categories/{{ category | first }}">{% assign titlename = category | first %}{% case titlename %}{% when 'album' %}相册{%when 'life' %}生活{% when 'programming' %}编程{% endcase %}</a> ({{ category | last | size }})
           </li>
          {% endif %}
       {% endfor %}
@@ -46,17 +44,18 @@ layout: default_bs
                   </a>
                 </h2>
               </header>
-              <section>
-                <span class="" style="">{{ post.excerpt }}</span>
+              <section style="overflow: hidden;">
+                <span class="" style="
+                  font-family: KaiTi,STKaiti,Microsoft YaHei;">{{ post.excerpt }}</span>
               </section>
                 <p class="button_p font-fangyan">
                   <a class="btn btn-default btn-sm" href="{{ post.url | prepend: site.baseurl }}" role="button">
                     进入阅读</a>
                 </p>
                 <p class="item_p">
-                    <span class="glyphicon"><img src="/assets/img/lantern.svg"/>{{ post.categories }}&nbsp;</span>
-                    <span class="post-meta glyphicon"><img src="/assets/img/bamboo.svg"/>{{ post.date | date: "%Y年-%m月-%d日" }}&nbsp;</span>
-                    <span class="glyphicon"><img src="/assets/img/panda.svg"/>{{ post.author }}&nbsp;</span>
+                    <span><img src="/assets/img/lantern.svg"/>{{ post.categories }}&nbsp;</span>
+                    <span class="post-meta"><img src="/assets/img/bamboo.svg"/>{{ post.date | date: "%Y年-%m月-%d日" }}&nbsp;</span>
+                    <span><img src="/assets/img/panda.svg"/>{{ post.author }}&nbsp;</span>
                 </p>
             </article>
         </li>
@@ -66,13 +65,13 @@ layout: default_bs
     {% if paginator.total_pages > 1 %}
     <div class="pagination">
         {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a> {% else %}
-        <span>&laquo; Prev</span> {% endif %} {% for page in (1..paginator.total_pages) %} {% if page == paginator.page %}
+        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; 上一页</a> {% else %}
+        <span>&laquo; 上一页</span> {% endif %} {% for page in (1..paginator.total_pages) %} {% if page == paginator.page %}
         <em>{{ page }}</em> {% elsif page == 1 %}
         <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a> {% else %}
         <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a> {% endif %} {% endfor %} {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a> {% else %}
-        <span>Next &raquo;</span> {% endif %}
+        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">下一页 &raquo;</a> {% else %}
+        <span>下一页 &raquo;</span> {% endif %}
     </div>
     {% endif %}
 

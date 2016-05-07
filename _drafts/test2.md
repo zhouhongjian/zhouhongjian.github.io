@@ -1,5 +1,5 @@
 ---
-layout: custom/post_bs
+layout: post_bs
 title: two test
 author: 周红建
 tag: 测试

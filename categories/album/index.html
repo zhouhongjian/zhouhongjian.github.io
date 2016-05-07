@@ -13,13 +13,14 @@ categoryName: album
           {% assign index = index | plus: 1 %}
             {% assign val = index | modulo: 3 %}
             <li>
-                <article class="excerpt" style="background-image: url(/assets/img/album-frame-suse{% case val %}{% when 0 %}1{%when 1 %}2{% when 2 %}3{% when 3 %}4{% endcase %}.png);">
+                <article class="excerpt" style="background-image: url(http://o6r75vmbt.bkt.clouddn.com/assets%2Fimg%2Falbum-frame-suse{% case val %}{% when 0 %}1{%when 1 %}2{% when 2 %}3{% endcase %}.png);">
+
                   <header>
                     <h2>
                     <small>
                       <img src="/assets/img/post-tag.svg"/>
                       <span>
-                        &nbsp;{{ post.tag }}&nbsp;
+                        &nbsp;{{ post.tags }}&nbsp;
                       </span>
                     </small>
                     <a class="post-link text-center" href="{{ post.url | prepend: site.baseurl }}">
@@ -27,14 +28,14 @@ categoryName: album
                     </a>
                   </h2>
                 </header>
-                <section>
+                <section style="overflow: hidden;">
                   <a href="{{ post.url | prepend: site.baseurl }}">{{ post.excerpt }}  </a>
                 </section>
                 <footer>
                 <p class="item_p" >
                     <span class="glyphicon"><img src="/assets/img/lantern.svg"/>{{ post.category }}&nbsp;</span>
-                    <span class="post-meta glyphicon"><img src="/assets/img/bamboo.svg"/>{{ post.date | date: "%Y年-%m月-%d日" }}&nbsp;</span>
-                    <span class="glyphicon"><img src="/assets/img/panda.svg"/>{{ post.author }}&nbsp;</span>
+                    <span class="post-meta "><img src="/assets/img/bamboo.svg"/>{{ post.date | date: "%Y年-%m月-%d日" }}&nbsp;</span>
+                    <span><img src="/assets/img/panda.svg"/>{{ post.author }}&nbsp;</span>
                 </p>
                 </footer>
               </article>
@@ -42,5 +43,4 @@ categoryName: album
           {% endif%}
         {% endfor %}
     </ul>
-
 </div>

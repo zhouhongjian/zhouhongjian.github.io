@@ -1,9 +1,8 @@
 ---
 layout: default_horizontal_scroll
 ---
-
-<!-- 滚动模块 -->
-<div>
+<article>
+  <!-- 滚动模块 -->
   <div class="container" style="margin-top:20px">
     <div id="slides">
       {{ content }}
@@ -15,11 +14,9 @@ layout: default_horizontal_scroll
   <script src="/assets/plugins/album.slides/js/jquery.slides.min.js"></script>
   <!-- 分享功能  -->
   <script src="/assets/plugins/album.slides/js/init.js"></script>
-</div>
 
 
 <!-- 多说评论模块  -->
-<div style="font-family:'fangyan'">
   <!-- 多说评论框 start -->
   <div class="ds-thread" data-thread-key="{{ page.id }}" data-title="{{ page.title }}" data-url="{{ page.url | prepend: site.baseurl}}"></div>
   <!-- 多说评论框 end -->
@@ -37,4 +34,5 @@ layout: default_horizontal_scroll
   })();
   </script>
   <!-- 多说公共JS代码 end -->
-</div>
+
+</article>
