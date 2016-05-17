@@ -1,0 +1,13 @@
+---
+layout: post_bs
+title: 五子棋
+category: programming
+author: 周红建
+date:   2016-05-17
+tags: 游戏
+---
+<link rel="stylesheet" href="/assets/posts/2016-05-17-gobang/css/style.css" type="text/css" charset="utf-8">
+<p>&nbsp;&nbsp;&nbsp;&nbsp;一个简单的五子棋游戏，与电脑对战，不过不一定容易获胜哟。</p>
+<canvas id="chess" width="450px" height="450px">
+</canvas>
+<script type="text/javascript" src="/assets/posts/2016-05-17-gobang/js/script.js"></script>
