@@ -26,7 +26,7 @@ baseurl: ""
 github_username: zhouhongjian
 permalink: /:year-:month-:day/:title.html
 
-gems: [jekyll-paginate]
+plugins: [jekyll-paginate]
 paginate: 3
 paginate_path: "/page:num"
 
