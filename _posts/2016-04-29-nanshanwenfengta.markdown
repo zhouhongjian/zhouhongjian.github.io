@@ -6,42 +6,46 @@ author: 周红建
 date:   2016-04-29
 tags: 短途旅行
 ---
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/1.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/1.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/2.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/2.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/3.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/3.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/4.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/4.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/5.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/5.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/6.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/6.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/7.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/7.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/8.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/8.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/9.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/9.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/10.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/10.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/11.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/11.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/12.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/12.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/13.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/13.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/14.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/14.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/15.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/15.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/16.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/16.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/17.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/17.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/18.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/18.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/19.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/19.jpg">
 
-<img src="http://o6r75vmbt.bkt.clouddn.com/post/album/nanshanwenfengta/20.jpg-BlogAlbumDisplay">
+<img src="/images/nanshanwenfengta/20.jpg">
+
+<img src="/images/nanshanwenfengta/1.jpg">
+
+<img src="/images/nanshanwenfengta/1.jpg">
