@@ -1,0 +1,177 @@
+# JDK源码分析：JUC的AQS上锁过程
+
+### 重要性
+java并发包中的锁和同步类，大多是基于该类实现的
+
+### 整个加锁流程梗概
+
+1. 多个线程同时调用一个锁的lock方法，然后每个线程都首先采用CAS尝试获取锁。
+2. 如果没有获取成功，那么会把线程本身作为一个Node挂到锁的一个双向链表上，然后进行少数几次CAS尝试。
+3. 如果都宣告失败，那么就会调用UNSAFE来上重锁，等待持锁线程释放后，被唤醒继续CAS尝试获取锁。
+
+### 源码分析
+
+从ReentrantLock的构造器看起，根据是否公平，采用代理模式，代理对应的sync。
+FairSync与NonfairSync的区别：
+获取FairSync锁的线程按先来后到的顺序获取锁，NonfairSync并不按先来后到，只看那个线程在对应时间点最快能获取到锁。
+
+以NonfairSync来继续分析，对应的上锁方法为lock()
+```java
+final void lock() {
+            if (compareAndSetState(0, 1))
+                setExclusiveOwnerThread(Thread.currentThread());
+            else
+                acquire(1);
+        }
+```
+1. 线程一进来，调用compareAndSetState(0, 1),尝试使用CAS获取锁。
+假设这时间点代表锁状态的state字段为0(0表示无线程持有该锁，1表示该锁已被线程持有)，那么通过CAS可以直接获取锁，而不需要像之前一样修改锁对象在内存中的对象头部锁字段。
+然后，通过  setExclusiveOwnerThread(Thread.currentThread()),将exclusiveOwnerThread(表示当前持有锁的线程)字段改成当前线程。  
+[CAS相关介绍](https://tech.meituan.com/2019/02/14/talk-about-java-magic-class-unsafe.html)
+
+2. 假设CAS失败，那么调用acquire(1)。查看acquire(1)的内部实现：
+```java
+public final void acquire(int arg) {
+        if (!tryAcquire(arg) &&
+            acquireQueued(addWaiter(Node.EXCLUSIVE), arg))
+            selfInterrupt();
+    }
+```
+3. tryAcquire是一个需要AQS子类实现的方法，根据它的不同实现，产生了各种用于不同情况的同步器，比如CountDownLatch、Semaphore内部的Sync类。
+    以Sync的tryAcquire实现来继续看:
+```java
+protected final boolean tryAcquire(int acquires) {
+            return nonfairTryAcquire(acquires);
+        }
+```
+```java
+    final boolean nonfairTryAcquire(int acquires) {
+            final Thread current = Thread.currentThread();
+            int c = getState();
+            if (c == 0) {
+                if (compareAndSetState(0, acquires)) {
+                    setExclusiveOwnerThread(current);
+                    return true;
+                }
+            }
+            else if (current == getExclusiveOwnerThread()) {
+                int nextc = c + acquires;
+                if (nextc < 0) // overflow
+                    throw new Error("Maximum lock count exceeded");
+                setState(nextc);
+                return true;
+            }
+            return false;
+        }
+```
+4. 获取当前锁的状态
+5. 如果当前锁的状态是0(表示之前持有锁的线程释放了),那么再次CAS尝试获取锁。true表示获取到锁。
+6. 如果当前线程现成是持有锁的现成，那么c + acquires，记录该锁的重入次数，然后CAS设置到state.true表示获取到锁。
+7. 没获取到锁返回，执行下一个操作
+
+下一个操作为acquireQueued(addWaiter(Node.EXCLUSIVE), arg))
+```java
+private Node addWaiter(Node mode) {
+        Node node = new Node(Thread.currentThread(), mode);
+        // Try the fast path of enq; backup to full enq on failure
+        Node pred = tail;
+        if (pred != null) {
+            node.prev = pred;
+            if (compareAndSetTail(pred, node)) {
+                pred.next = node;
+                return node;
+            }
+        }
+        enq(node);
+        return node;
+    }
+```
+8. 将当前现成封装到一个Node中，然后把它挂在一个双向链表的尾部，并且将该尾节点CAS设置到当前锁的tail字段（当前锁的所有线程都被这个链表记录下来）上。
+```java
+final boolean acquireQueued(final Node node, int arg) {
+        boolean failed = true;
+        try {
+            boolean interrupted = false;
+            for (;;) {
+                final Node p = node.predecessor();
+                if (p == head && tryAcquire(arg)) {
+                    setHead(node);
+                    p.next = null; // help GC
+                    failed = false;
+                    return interrupted;
+                }
+                if (shouldParkAfterFailedAcquire(p, node) &&
+                    parkAndCheckInterrupt())
+                    interrupted = true;
+            }
+        } finally {
+            if (failed)
+                cancelAcquire(node);
+        }
+    }
+```
+9. 获取前一个节点，如果前一个节点是头节点，那么tryAcquire(前面已分析过)再次尝试获取。如果获取成功，那么把当前节点设置成头节点。然后返回false，表示不中断，获取到了锁。
+10. 如果不是头节点或者获取失败；那么来看shouldParkAfterFailedAcquire(p, node) &&
+                    parkAndCheckInterrupt()
+```java
+private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
+        int ws = pred.waitStatus;
+        if (ws == Node.SIGNAL)
+            /*
+             * This node has already set status asking a release
+             * to signal it, so it can safely park.
+             */
+            return true;
+        if (ws > 0) {
+            /*
+             * Predecessor was cancelled. Skip over predecessors and
+             * indicate retry.
+             */
+            do {
+                node.prev = pred = pred.prev;
+            } while (pred.waitStatus > 0);
+            pred.next = node;
+        } else {
+            /*
+             * waitStatus must be 0 or PROPAGATE.  Indicate that we
+             * need a signal, but don't park yet.  Caller will need to
+             * retry to make sure it cannot acquire before parking.
+             */
+            compareAndSetWaitStatus(pred, ws, Node.SIGNAL);
+        }
+        return false;
+    }
+```
+
+11. 如果前一个节点的等待状态是SIGNAL，表示前一个节点持有锁，那么返回true表示当前现成应该暂停了。
+12. 如果前一个节点的等待状态是CANCELLED（大于0的只有1CANCELLED），那么说明前一个节点已经取消等待，直接删掉。然后继续查看更前面的节点是否CANCELLED，如果是就继续删掉。返回false，然后继续for循环，这样下次进来该线程就会走11或者13。
+13. 如果前一个节点是其他状态，那么直接将其设置为SIGNAL状态。返回false，然后继续for循环，这样下次进来该线程就会走11。
+
+14. 这样所有的线程，要么在for循环的前一部分逻辑9中因为线程是当前的头结点CAS获取到锁，要么走11返回ture,parkAndCheckInterrupt()
+```java
+private final boolean parkAndCheckInterrupt() {
+        LockSupport.park(this);
+        return Thread.interrupted();
+    }
+```
+15. this表示当前的锁作为入参，传入park。
+```java
+public static void park(Object blocker) {
+        Thread t = Thread.currentThread();
+        setBlocker(t, blocker);
+        UNSAFE.park(false, 0L);
+        setBlocker(t, null);
+    }
+```
+16. setBlocker(t, blocker)设置当前线程被阻塞在当前锁上，方便在测试的时候知道线程在什么地方阻塞。[参考](https://leokongwq.github.io/2017/01/13/java-LockSupport.html)  
+然后UNSAFE.park(false, 0L)进行实际的阻塞（实际上就是改内存对象头的字段，上消极锁或者叫上重锁）。  
+然后线程中断，从这里开始线程就停止了，后续的代码逻辑要被唤醒后才会执行。
+
+
+
+17. 假设持有锁的线程unlock之后，我们看下随后的逻辑：  
+取消阻塞标记，返回当前线程是否中断。  
+执行Thread.interrupted()，这个方法的含义表示清空当前的线程的中断状态然后返回false，而不是查看当前线程的中断状态(如果是这个需求，要用Thread.currentThread().isInterrupted())。[参考](https://www.cnblogs.com/onlywujun/p/3565082.html)  
+返回false后，这样该线程就可以继续执行for循环了。
+
+18. 至于返回true，然后设置interrupted = true，然后执行finally块的cancelAcquire函数。这种情况暂时没想到什么情况下会发生，略。
