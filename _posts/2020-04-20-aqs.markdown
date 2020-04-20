@@ -9,16 +9,16 @@ tags: JDK源码分析
 <!-- # JUC的AQS上锁过程 -->
 
 ### 重要性
-java并发包中的锁和同步类，大多是基于该类实现的
+java并发包中的锁和同步类，大多是基于AbstractQueuedSynchronizer实现的
 
-### 整个加锁流程梗概
+### AbstractQueuedSynchronizer整个加锁流程梗概
 
 1. 多个线程同时调用一个锁的lock方法，然后每个线程都首先采用CAS尝试获取锁。
 2. 如果没有获取成功，那么会把线程本身作为一个Node挂到锁的一个双向链表上，然后进行少数几次CAS尝试。
 3. 如果都宣告失败，那么就会调用UNSAFE来上重锁，等待持锁线程释放后，被唤醒继续CAS尝试获取锁。
 
 ### 源码分析
-
+AbstractQueuedSynchronizer是一个抽象类，所以我们用其应用最为广泛的ReentrantLock来分析。  
 从ReentrantLock的构造器看起，根据是否公平，采用代理模式，代理对应的sync。
 FairSync与NonfairSync的区别：
 获取FairSync锁的线程按先来后到的顺序获取锁，NonfairSync并不按先来后到，只看那个线程在对应时间点最快能获取到锁。
